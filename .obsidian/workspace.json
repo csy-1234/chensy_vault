@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "4453e46ac86ab1ad",
+        "id": "6e999c57eb1c389f",
         "type": "tabs",
         "children": [
           {
-            "id": "cceb019d93049c9a",
+            "id": "624b40aa3845f7be",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -172,11 +172,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "cceb019d93049c9a",
+  "active": "624b40aa3845f7be",
   "lastOpenFiles": [
     "01_MOCs/测试github同步.md",
-    "02_Atoms/未命名.base",
     "01_MOCs/obsidian MOC.md",
+    "01_MOCs/github-create-test",
+    "02_Atoms/未命名.base",
     "云计算/0818主从复制.md",
     "模板/日记模板.md",
     "新建 文本文档.txt",
@@ -214,7 +215,6 @@
     "Notes/Atoms",
     "Notes/MOCs",
     "Notes/未命名.md",
-    "Notes/Atoms",
     "核心思维.md",
     "未命名.md",
     "运维实习/运维原则.md",
