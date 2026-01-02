@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_MOCs/github-create-test.md",
+                "file": "01_MOCs/obsidian MOC.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "github-create-test"
+              "title": "obsidian MOC"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 289.5063819885254
   },
   "right": {
     "id": "15350b7938e6c683",
@@ -174,10 +174,10 @@
   },
   "active": "624b40aa3845f7be",
   "lastOpenFiles": [
-    "01_MOCs/ccssyy",
-    "01_MOCs/obsidian MOC.md",
-    "01_MOCs/github-create-test.md",
     "01_MOCs/测试github同步.md",
+    "01_MOCs/github-create-test.md",
+    "01_MOCs/obsidian MOC.md",
+    "01_MOCs/ccssyy",
     "01_MOCs/github-create-test",
     "02_Atoms/未命名.base",
     "云计算/0818主从复制.md",
@@ -215,7 +215,6 @@
     "05_Archive",
     "01_MOCs",
     "Notes/Atoms",
-    "Notes/MOCs",
     "Notes/未命名.md",
     "核心思维.md",
     "未命名.md",
