@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_MOCs/obsidian MOC.md",
+                "file": "01_MOCs/ccssyy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "obsidian MOC"
+              "title": "ccssyy"
             }
           }
         ]
@@ -174,9 +174,10 @@
   },
   "active": "624b40aa3845f7be",
   "lastOpenFiles": [
+    "01_MOCs/obsidian MOC.md",
+    "01_MOCs/ccssyy.md",
     "01_MOCs/测试github同步.md",
     "01_MOCs/github-create-test.md",
-    "01_MOCs/obsidian MOC.md",
     "01_MOCs/ccssyy",
     "01_MOCs/github-create-test",
     "02_Atoms/未命名.base",
