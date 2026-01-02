@@ -1,0 +1,97 @@
+DNS实验
+准备：一台干净虚拟机	node7	.10
+步骤：
+安装bindutils-修改主配置文件-修改区域配置文件-启动-测试
+
+1.安装
+rpm -qa bind*	#卸载bind遗留
+rpm -e --nodeps `rpm -qa bind*`
+yum -y install bind bind-utils		#下载bind9及其工具
+2.修改主配置文件
+vim /etc/named.conf					#修改主配置文件，基础配置
+options {							#全局参数
+	listen-on port 53 { 192.168.80.10; };	#DNS监听ip和端口（DNS服务入口）
+	directory 	"/var/named";				#区域文件存放目录（zone 文件存放目录（）
+	#allow-query {any;};						#允许哪些主机查询本DNS（限制谁能向本机发 DNS 查询请求）
+	#recursion yes;							#开启递归查询()
+	
+};
+
+zone "test.com" IN {
+	type master;
+	file "test.zheng";
+
+};
+zone "80.168.192.in-addr.arpa" IN {
+	type master;
+	file "test.fan";
+
+};
+named-checkconf /etc/named.conf		#检测主配置文件是否有误
+
+3.创建区域文件 
+vim /var/named/test.zheng 
+$TTL 86400
+@	IN	SOA	ns1.test.com.	admin.test.com. (
+			2019050101
+			3H
+			15M
+			1W
+			1D
+)
+@	IN	NS	ns1.test.com.
+	IN	MX 10	mail.test.com.
+ns1	IN	A	192.168.80.10
+www	IN	A	192.168.80.100
+ts	IN	A	192.168.80.200
+*	IN	A	192.168.80.128
+
+vim /var/named/test.fan 
+$TTL 86400
+@	IN	SOA	test.com.	admin.test.com. (
+			2019050101
+			3H
+			15M
+			1W
+			1D
+)
+@	IN	NS	ns1.test.com.
+10	IN	PTR	ns1.test.com.
+100	IN	PTR	www.test.com.
+200	IN	PTR	ts.test.com.
+128	IN	PTR	mail.test.com.
+
+
+#授权
+chown -R named.named /var/named/test.*
+#测试DNS区域配置文件是否正确
+named-checkzone test.com /var/named/test.zheng	#结果应该是ok
+named-checkzone 10.168.196 /var/named/test.fan	#结果应该是ok
+systemctl restart named
+
+
+本机测试
+vim /etc/sysconfig/network-scripts/ifcfg-ens33或/etc/resolv.conf	#改dns为本机
+或
+使用另一台主机node6 .45	修改dns为配置的dns服务器ip
+解析方式一：
+nslookup 192.168.80.100	#ip解析为域名；查看PTR 记录，也就是反向域名区域文件；nslookup操作系统自带命令
+nslookup www.test.com	#解析域名成ip，查看a记录，也就是正向区域文件
+正向解析
+解析方式二：
+dig [@192.168.80.10] www.test.com
+#解析mx记录
+dig @192.168.80.10 test.com MX
+反向解析
+dig -x 192.168.80.100
+dig -t NS .	查看13个根域
+
+
+其他：
+常见的地址解析记录:
+NS记录/主域名记录：记录当前区域的DNS服务器的主机地址。
+MX记录/邮件记录：记录当前区域的邮件服务器的主机地址，数字10表示（当有多个MX记录时）选择邮件服务器的优先级，数字越大优先级越低。
+A记录/正向域名记录：记录正向解析条目（IPV4）。
+AAAA记录/正向ipv6域名记录：记录正向解析条目（IPV6）。
+CNAME记录/别名记录：记录某一个正向解析条目的其他名称。
+cat /var/named/named.ca    #全球13台根服务器

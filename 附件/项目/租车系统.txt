@@ -1,0 +1,101 @@
+#安装mysql
+yum -y install libaio
+tar xf mysql-5.7.26-linux-glibc2.12-x86_64.tar.gz -C /opt/
+mv /opt/mysql-5.7.26-linux-glibc2.12-x86_64 /opt/mysql
+useradd -M -s /sbin/nologin mysql
+touch /opt/mysql/mysql.log
+mkdir /opt/mysql/data
+chown -R mysql.mysql /opt/mysql
+/opt/mysql/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql --datadir=/opt/mysql/data
+echo "PATH=/opt/mysql/bin:$PATH" >> /etc/profile
+. /etc/profile
+vim /etc/my.cnf
+[mysqld]
+datadir=/opt/mysql/data
+socket=/tmp/mysql.sock
+symbolic-links=0
+
+[mysqld_safe]
+log-error=/opt/mysql/mysql.log
+pid-file=/opt/mysql/mysql.pid
+
+cp -a /opt/mysql/support-files/mysql.server /opt/mysql/bin/mysql.sh
+vim /opt/mysql/bin/mysql.sh
+basedir=/opt/mysql
+datadir=/opt/mysql/data
+/opt/mysql/bin/mysql.sh start
+mysqladmin -uroot -p'KAlaU&0p5RmL' password '123456'
+mysql -uroot -p123456
+create database opencar character set utf8;
+grant all privileges on *.* to 'root'@'%' identified by '1234.com';
+use opencar;
+source /root/opencar.sql
+flush privileges;
+\q
+--------------------------------------------------------
+#安装jdk
+rpm -e --nodeps `rpm -qa java*`
+rpm -ivh jdk-8u371-linux-x64.rpm
+vim /etc/profile.d/java.sh
+export JAVA_HOME=/usr/java/latest
+export JRE_HOME=/usr/java/latest/jre
+export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+. /etc/profile.d/java.sh
+source /etc/profile.d/java.sh
+java -version
+
+
+#安装tomcat
+tar xf apache-tomcat-9.0.65.tar.gz 
+mv apache-tomcat-9.0.65 /opt/tomcat
+rm -rf /opt/tomcat/webapps/*
+vim /opt/tomcat/bin/catalina.sh
+JAVA_OPS="$JAVA_OPTS -Djava.awt.headless=true"
+tar xf zcxt.tar.bz2 
+cp -arv zcxt/opencarrun /opt/tomcat/webapps/
+vim /opt/tomcat/webapps/opencarrun/WEB-INF/classes/db.properties 
+driver=com.mysql.jdbc.Driver
+url=jdbc\:mysql\://localhost\:3306/opencar?useUnicode\=true&characterEncoding\=UTF-8
+username=root
+pass=123456
+vim /opt/tomcat/conf/server.xml
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+      <Context docBase="/opt/tomcat/webapps/opencarrun" path="" reloadable="flase" >
+     </Context>
+/opt/tomcat/bin/catalina.sh start
+---------------------------------------------------------
+#安装nginx
+yum -y install pcre-devel zlib-devel openssl-devel elinks geoip-devel
+useradd -M -s /sbin/nologin nginx
+tar xf nginx-1.23.1.tar.gz
+mkdir /opt/nginx
+chown -R nginx.nginx /opt/nginx
+cd nginx-1.23.1 
+./configure \
+--prefix=/opt/nginx \
+--user=nginx \
+--group=nginx \
+--with-file-aio \
+--with-http_stub_status_module \
+--with-http_ssl_module \
+--with-http_flv_module \
+--with-http_gzip_static_module
+make && make install
+ln -s /opt/nginx/sbin/nginx /usr/local/bin/
+nginx
+
+#nginx配置
+vim /opt/nginx/conf/nginx.conf
+    server {
+        listen       80;
+        server_name  localhost;
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+     location = / {
+            return 301 http://192.168.80.44:8080/opencarrun;            #index  index.html index.htm;
+            proxy_set_header        X-Real-IP $remote_addr;
+            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header        Host $http_host;
+        }

@@ -1,0 +1,186 @@
+实验目的：数据库备份与恢复
+实验准备：一台干净linux机器
+介绍：
+背景		数据丢失原因	数据备份类型	备份工具	实验	备份注意	
+实验：
+#安装MySQL
+tar xf mysql-8.0.42-1.el7.x86_64.rpm-bundle.tar
+rpm -qa mariadb-libs
+yum remove -y mariadb-libs
+yum -y localinstall *.rpm
+#修改主配置文件
+vim /etc/my.cnf
+server-id=1		#实例分配一个唯一的 ID
+sync-binlog=1	#二进制日志（binlog）写入磁盘的同步方式
+log-bin=mysql-binlog	#开启 二进制日志（binlog）功能，并指定日志文件的前缀为 mysql-binlog。
+#启动数据库
+systemctl start mysqld	
+systemctl status mysqld
+#修改MySQL密码
+cat /var/log/mysqld.log-binlog
+mysql -u root -p
+alter user 'root'@'localhost' identified by 'xxx';
+#数据准备 
+show databases;
+create database abc;
+use abc;
+create table t2(
+    id int not null unique auto_increment,
+    name varchar(20) not null,
+    sex enum('male','female') not null default 'male',
+    age int(3) unsigned not null default 28,
+    hire_date date not null,
+    post varchar(50),
+    post_comment varchar(100),
+    salary double(15,2),
+    office int,
+    depart_id int
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+insert into t2(name,sex,age,hire_date,post,salary,office,depart_id) values
+('貂蝉','male',18,'20170301','宇宙驻地球办事处外交大使',7300.33,401,1),
+('蔡文姬','male',78,'20150302','teacher',1000000.31,401,1),
+('安其拉','male',81,'20130305','teacher',8300,401,1),
+('孙悟空','male',73,'20140701','teacher',3500,401,1),
+('后羿','male',48,'20101111','teacher',10000,401,1),
+('鸭鸭','female',28,'20170127','sale',4000.33,402,2),
+('程咬钢','male',28,'20160311','operation',10000.13,403,3),
+('程咬金','male',18,'19970312','operation',20000,403,3);
+select * from t2;
+
+实验1：mysqldump全量备份各5种结构数据
+1.对单个库进行完全备份
+格式：mysqldump -u用户名 -p[密码] [选项] --databases [数据库名] > /备份路径/备份文件名
+示例：
+mysqldump -uroot -p123456 --databases abc > /backup/abc-`date +%Y%m%d`.sql
+cat /backup/abc-20220811.sql
+
+2.对多个库进行完全备份
+格式：mysqldump -u用户名 -p [密码] [选项] --databases 库名1 [库名2]… > /备份路径/备份文件名
+示例：
+mysqldump -uroot -p123456 --databases mysql abc > /backup/mysql+abc-`date +%Y%m%d`.sql 
+cat /backup/mysql+abc-20220811.sql
+
+3.对所有库进行完全备份
+格式：mysqldump -u用户名 -p [密码] [选项] --opt --all-databases > /备份路径/备份文件名
+示例：
+mysqldump -uroot -p123456 --opt --all-databases > /backup/mysql_all.`date +%Y%m%d`.sql
+cat /backup/mysql_all.20220811.sql
+#--opt 加快备份速度，当备份数据量大时使用
+
+4.对表进行完全备份
+格式：mysqldump -u用户名 -p [密码] [选项] 数据库名 表名 > /备份路径/备份文件名
+示例：
+mysqldump -uroot -p123456 abc t2 > /backup/abc_t2-`date +%Y%m%d`.sql
+cat /backup/abc_t2-20220811.sql
+
+5.对表结构的备份
+格式：mysqldump -u用户名 -p [密码] -d 数据库名 表名 > /备份路径/备份文件名
+示例：
+mysqldump -uroot -p123456 -d abc t2 > /backup/desc_abc_t2-$(date +%Y%m%d).sql
+cat /backup/desc_abc_t2-20220811.sql
+
+实验2：两种恢复数据方法
+1、source命令
+mysql -uroot -p123456
+drop database abc;
+show databases;
+source /backup/abc-20220811.sql
+show databases;
+
+2.mysql命令
+格式：
+mysql -u用户名 -p [密码] < 库备份脚本的路径
+mysql -u用户名 -p [密码] 库名 < 表备份脚本的路径
+mysql -uroot -p123456 -e 'show databases;'
+mysql -uroot -p123456 -e 'drop database abc;'
+mysql -uroot -p123456 < /backup/abc-20220811.sql
+mysql -uroot -p123456 -e 'show databases;'
+mysql -uroot -p123456 -e 'drop table abc.t2;'
+mysql -uroot -p123456 abc< /backup/abc_t2-20220811.sql
+mysql -uroot -p123456 -e 'select * from abc.t2;'
+
+实验3：脚本自动备份
+which mysqldump
+/usr/bin/mysqldump
+vim /opt/bak_mysql_all.sh
+#!/bin/bash
+/usr/bin/mysqldump -uroot -p123456 --opt --all-databases >/backup/mysql_all_info-$(date +%Y%m%d).sql
+chmod +x /opt/bak_mysql_allt.sh
+crontab -e
+* * * * *　/nin/bash /opt/bak_mysql_allt.sh > /dev/null
+crontab -l
+
+
+实验4：企业实战案例(备份+增量)
+#创建数据库和表（复制上数据即可abc-t2）
+
+#备份
+#全量备份（表t2，也可以是数据库）
+mysqldump -uroot -pCsy@1234 abc t2 > /backup/abc_t2_`date +%Y%m%d`.sql
+#产生增量数据，进行增量备份（复制二进制文件）
+ls /var/lib/mysql/
+#关闭当前日志文件并重新生成一个新的日志文件(包括二进制mysql-binlog.xxx文件)
+mysqladmin -utoot -pCsy@1234 flush-logs		#MySQL 提供的管理工具，用来执行管理命令;lush-logs：管理命令，意思是 刷新日志；重新生成了一个mysql-binlog.00001
+#间隔时间插入两条数据到t2表
+insert intot t2(name,sex,age,hire_date,post,salary.office,depart_id）values('花木兰','male',28,20121101,'teacher',2100,401,1);
+insert intot t2(name,sex,age,hire_date,ost,salary,office,depart_id)values('周瑜','female',18,20110211','teacher,9000,401,1);
+select * from t2;		#以上两条记录被记录到新的binlog中
+#备份新的binlog
+cp /var/lib/mysql/mysql-binlog.000002 /backup/
+mysqlbinlog -v /backup/bmysql-binlog.000002
+
+#模拟数据丢失
+drop table t2;
+
+#恢复
+#全量恢复
+mysql -uroot -pCsy@1234 abc < /backup/abc_t2_shijian.sql
+select * from t2;		#仅恢复前八条
+#增量恢复
+mysqlbinlog --no-defaults /backup/mysql-binlog.000002 | mysql -uroot -pCsy@1234
+select * from t2;		#恢复了新增的两条
+
+#基于时间点的恢复
+#删除两条数据
+#看增量文件，确定时间点
+mysqlbinlog -v /backup/mysql-binlog.00002
+mysqlbinlog --no-defaults --start-datetime='时间' /backup/mysql-binlog.00002 |mysql -uroot -pCsy@1234
+						  --stop-datetime='时间'
+#基于位置恢复
+mysqlbinlog --no-defaults --start-locacation=‘位置’ /backup/mysql-binlog.00002
+						  --stop-locacation=‘位置’
+
+
+增量恢复的格式：
+1、一般的恢复：备份的二进制日志内容全部恢复
+格式：mysqlbinlog [--no-defaults] 增量备份文件 | mysql -u用户名 -p密码
+
+2、基于时间点的恢复：便于跳过某个发生错误的时间点实现数据恢复
+格式：从日志开头截止到某个时间点的恢复：
+mysqlbinlog [--no-defaults] --stop-datetime=’年-月-日 小时:分钟:秒’ 二进制日志 | mysql -u用户名 -p密码
+
+从某个时间点到日志结尾的恢复：
+mysqlbinlog [--no-defaults] --start-datetime=’年-月-日 小时:分钟:秒’ 二进制日志 | mysql -u用户名 -p密码
+
+从某个时间点到某个时间点的恢复：
+mysqlbinlog [--no-defaults] --start-datetime=’年-月-日 小时:分钟:秒’ --stop-datetime=’年-月-日 小时:分钟:秒’ 二进制日志 | mysql -u用户名 -p密码
+
+3、基于位置的恢复：可能在同一时间点既有错误的操作也有正确的操作，基于位置进行恢复更加精准
+格式：
+mysqlbinlog --stop-position=’操作id’ 二进制日志 |mysql -u用户名 -p密码
+mysqlbinlog --start-position=’操作id’ 二进制日志 |mysql -u用户名 -p密码
+
+
+
+#继续录入新的数据
+insert into t2(name,sex,age,hire_date,post,salary,office,depart_id) values('花木兰','male',28,'20121101','teacher',2100,401,1);
+#中间间隔5分钟录入下一条信息
+insert into t2(name,sex,age,hire_date,post,salary,office,depart_id) values('周瑜','female',18,'20110211','teacher',9000,401,1);
+select * from t2;
+
+实验记录：
+实验一：5种备份
+实验二：两种恢复
+实验三：脚本自动备份
+实验四：企业实例（全量备份、普通增量恢复、基于时间/位置增量备份与恢复）

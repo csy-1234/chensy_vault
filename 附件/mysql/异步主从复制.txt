@@ -1,0 +1,103 @@
+异步复制
+客户端执行事务到主库，主库直接返回执行结果给用户，不等待从库数据同步完成
+
+全同步复制
+客户端执行事务到主库，主库把数据全部同步给所有从库后，给客户端返回执行结果
+
+半同步复制
+客户端执行事务到主库，主库把数据同步给至少一从库后，给客户端返回执行结果
+
+主从原理
+主库发生变化后，将变化信息写入到主库的二进制日志中
+从库启动两个线程（IO线程、SQL线程）
+从库用IO线程同步主库二进制日志到从库本身的中继日志中
+从库用sql线程读取中继日志在自身执行一遍达到主从数据同步目的
+
+
+异步复制实验
+主从都执行
+#解压mysql包
+tar xf mysql-8.0.42-1.el7.x86_64.rpm-bundle.tar
+#删除mariadb-libs
+rpm -qa mariadb-libs
+yum remove -y mariadb-libs
+#安装mysql的rpm包
+yum -y localinstall *.rpm
+#启动mysql
+systemctl start mysqld
+systemctl status mysqld
+
+主上执行
+#修改MySQL 的主配置文件
+vim /etc/my.cnf
+[mysqld]
+server-id=1				#给主库分配唯一标识，主从复制必需
+sync-binlog=1			#每次事务提交都把二进制日志写入磁盘，保证数据安全
+log-bin=mysql-binlog	#开启二进制日志，记录主库所有写操作，用于从库同步
+#修改完后重启数据库
+systemctl  restart mysqld
+netstat -anptl|grep 3306
+#登录系统
+cat /var/log/mysqld.log
+mysql -u root -p
+alter user 'root'@'localhost' identified by 'xxx';	#修改密码
+create user 'root'@'%' identified by 'xxx';			#创建并从库专用用户
+grant all on *.* to 'root'@'%';						#授权从库专用用户
+#更建议的做法
+#CREATE USER 'slave_user'@'%' IDENTIFIED BY 'Slave@1234';
+#GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%';
+#FLUSH PRIVILEGES;
+#只授予 REPLICATION SLAVE 权限
+#更安全，更符合生产环境规范
+
+#flush privileges;	#如果是grant和revoke，可用可不用
+show master status;	#查看看主库当前主库的二进制日志文件（binlog）和位置;默认目录：MySQL 的 数据目录（datadir），通常是：/var/lib/mysql/
+
+
+从上执行
+修改MySQL主配置文件
+vim /etc/my.cnf
+[mysqld]
+server-id=2		#给从库分配唯一 ID，主从复制中必须不同于主库
+read_only=1		#限制从库为只读，防止误写操作，实现读写分离。
+relay_log=mysql-relay-bin		#指定从库中继日志文件前缀，用于存储从主库同步下来的 binlog 数据，再由 SQL 线程执行
+
+#修改完后重启数据库
+systemctl restart mysqld
+#验MySQL启动
+netstat -anptl|grep 3306
+#登录系统
+cat /var/log/mysqld.log
+mysql -u root -p
+alter user 'root'@'localhost' identified by 'xxx';		#修改密码
+#验证主库授权的账号密码能否登录主库
+mysql -uroot -pxxx -h192.168.80.10
+#root本地登录
+mysql –uroot -pxxx
+#配置
+mysql> stop slave;		#停止从库的 IO 线程和 SQL 线程，保证可以安全修改主库连接信息和起始位置
+mysql> CHANGE MASTER TO		#配置主库信息（5条）
+mysql> MASTER_HOST='192.168.80.10',
+mysql> MASTER_USER='root',
+mysql> MASTER_PASSWORD='Linux@456.com',
+mysql> MASTER_LOG_FILE='mysql-binlog.000001',
+mysql> MASTER_LOG_POS=1173;
+mysql> start slave;			#启动从库IO和SQL线程
+mysql> show slave status\G	#查看从库状态（IO 线程和 SQL 线程状态，binlog文件名和位置）
+
+测试主从同步
+#主库查看当前存在的库
+mysql> show databases;
+
+#从库查看当前存在库
+mysql> show databases;
+
+#主库服务器创建库和表
+mysql> create database sampdb;
+mysql> use sampdb;
+mysql> create table new(name char(20),phone char(20));
+
+#从库验证
+mysql> show databases;
+mysql> use sampdb
+mysql> show tables;

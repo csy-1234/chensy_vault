@@ -1,0 +1,107 @@
+Rsync	Remote sync	文件备份工具
+
+1.远程拉取和推送数据命令：rsync和scp
+scp命令（加密）
+scp -r(递归、目录) -C（压缩） -p（保留权限）	root@ip：/etc/passwd /opt/	#拉取到本机
+scp -r(递归、目录) -C（压缩） -p（保留权限）	 /opt/tuned    root@ip：/root/	#推送到远程主机
+
+rsync命令（不加密，快）
+rsync -a(保留权限)v（可视化)z（压缩传输，用于目录） root@ip:/var/log/tuned		/opt/	#拉取到本机
+rsync -a(保留权限)v（可视化)z（压缩传输，用于目录） /opt/tuned root@ip:/root/			#推送到本机
+
+2.rsync服务端搭建
+修改主配置文件-创建用户信息文件-启动服务
+1.服务端配置（接受请求，以守护进程运行，提供备份源）
+安装rsync（默认是安装了的）
+vim /etc/rsyncd.conf
+#用户名
+uid = root
+#组名
+gid = root
+#禁锢在源目录
+use chroot = yes
+#监听地址
+address = 192.168.80.40
+#监听端口
+port = 873
+#日志文件位置
+log file = /var/log/rsyncd.log
+#存放进程ID文件位置
+pid file = /var/run/rsyncd.pid
+[wwwroot]
+#源目录的实际路径
+path = /var/www/html
+#描述信息
+comment = Document Root
+#是否只有读权限
+read only = false
+#备份授权用户
+auth users = backuper
+#存放账户信息的数据文件
+secrets file = /etc/rsyncd_pass
+
+2、为备份账户创建数据文件，以冒号分割，密码信息在文件中以明文方式存放，为避免信息泄漏，需要调整权限
+vim /etc/rsyncd_pass
+backuper:pwd123
+chmod 600 /etc/rsyncd_pass #必须是root属主，必须是600
+#备份用户backuper也需要对/var/www/html/有相应的读取权限 
+mkdir -p /var/www/html/
+chmod 777 /var/www/html/	#目录权限针对模块配置的uid和gid
+ls -ld /var/www/html/
+
+3、启动服务运行命令为"rsync --daemon"，以独立监听服务的方式运行，若关闭rsync服务可采用kill进程方式。
+rsync --daemon
+netstat -anpt |grep rsync
+
+关闭rsync服务
+kill $(cat /var/run/rsyncd.pid)
+rm -rf /var/run/rsyncd.pid
+netstat -anpt |grep rsync
+
+
+
+客户端配置
+本地备份：备份源和发起端可以是一台机器
+rsync /etc/fstab /opt/
+rsync -avz /etc/fstab /boot/grub/ /opt/
+
+备份源的表示方法：
+	在执行远程同步任务时，rsync命令需要指定备份源服务器中的资源位置。rsync同步源的资源表示方式有两种：
+
+push推送上行备份操作：备份源对应 "目标位置"(推送文件)
+rsync 选项 本地目录 用户名@主机地址::共享模块名称
+rsync  -avz /etc/passwd backuper@192.168.80.40::wwwroot
+
+pull拉取下行备份操作：备份源对应 "原始位置"(拉取文件)
+rsync 选项 用户名@主机地址::共享模块名称 本地目录
+rsync -avz backuper@192.168.80.40::wwwroot /opt/
+
+
+rsync备份源的无交互验证方式
+通过--password-file选项指定存储密码的文件
+vim /etc/rsyncd_pass
+pwd123
+chmod 600 /etc/rsyncd_pass
+rsync -avz  --delete --password-file=/etc/rsyncd_pass backuper@192.168.80.45::wwwroot /opt/
+
+crontab -e
+59 23 * * * /usr/bin/ rsync -avz  --delete --password-file=/etc/rsyncd_pass backuper@192.168.80.45::wwwroot /opt/
+
+权限
+服务端 secrets file：
+
+root:root，权限 600。
+
+服务端模块目录：
+
+属主：配置的 uid/gid 用户。
+
+权限：保证该用户有 r 或 rw 权限。
+
+客户端密码文件：
+
+属主：执行 rsync 的用户。
+
+权限：600。
+
+这样就能确保 安全性 + 正常工作 ✅。

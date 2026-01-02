@@ -1,0 +1,84 @@
+源码编译安装nginx
+也就不能使用systemclt管理
+安装依赖-创建用户-准备安装目录并授权-解压源码并进入目录-配置编译参数-编译并安装-创建运行时目录-建立软连接-检查配置文件-启动 Nginx
+
+1.yum -y install gcc pcre-devel zlib-devel openssl-devel elinks geoip-devel php-gd gd-devel
+
+pcre-devel#正则表达式解析
+zlib-devel#gzip 压缩功能
+openssl-devel#HTTPS / TLS 支持
+elinks#测试网页
+geoip-devel#根据 IP 地址进行地理位置识别
+php-gd 和 gd-devel#图像处理库
+
+
+2.useradd -M -s /sbin/nologin nginx
+
+-M：不创建家目录
+-s /sbin/nologin：禁止登录，只能用于跑服务
+安全性更高，Nginx 就用这个用户身份运行。
+源码不会自动创建用户，需要手动创建
+
+3.mkdir /usr/local/nginx
+3.chown -R nginx.nginx /usr/local/nginx
+
+x：extract，解压文件
+f：file，指定操作的文件名
+
+4..tar xf nginx-1.28.0.tar.gz
+4.cd nginx-1.28.0 
+
+5.  ./configure \
+--prefix=/usr/local/nginx \
+--user=nginx \
+--group=nginx \
+--with-http_stub_status_module \
+--with-http_ssl_module \
+--with-http_flv_module \
+--with-http_gzip_static_module \
+--with-http_v2_module \
+--with-http_realip_module \
+--with-http_addition_module \
+--with-http_image_filter_module \
+--with-http_geoip_module \
+--with-http_gunzip_module \
+--with-pcre \
+--with-stream \
+--with-stream_realip_module
+
+--prefix	安装路径
+--user	--group	指定运行用户/组
+--with-http_stub_status_module	状态监控模块
+--with-http_ssl_module	支持 HTTPS
+--with-http_flv_module	支持 FLV 视频流
+--with-http_gzip_static_module	持预压缩的 gzip 文件
+--with-http_v2_module	支持 HTTP/2
+--with-http_realip_module	获取真实客户端 IP
+--with-http_addition_module	响应内容追加
+--with-http_image_filter_module	图像处理模块
+--with-http_geoip_module	根据 IP 地址定位
+--with-http_gunzip_module	支持 gunzip 解压
+--with-pcre	启用正则表达式支持
+--with-stream	支持四层代理（TCP/UDP 反向代理）
+--with-stream_realip_module	stream 获取真实 IP
+
+6.make && make install
+
+make：编译源码
+make install：安装到 --prefix 指定的目录
+
+7.mkdir -pv /var/lib/nginx/tmp/
+
+-p：递归创建
+-v：显示创建过程
+主要用于存放 Nginx 运行时的临时文件。
+
+8.ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/
+8.ll /usr/local/bin/nginx
+
+-s：创建一个符号链接，软链接让你直接用 nginx 命令启动，而不用写完整路径；这个目标目录下，创建一个和源文件同名的链接
+ll 查看是否成功链接。
+
+9.nginx -t
+
+10.nginx
