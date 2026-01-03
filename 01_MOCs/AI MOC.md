@@ -5,7 +5,7 @@
 > AI模型是是AI的具体实现。
 
 ![[Pasted image 20260103145237.png]]
-
+![](04_Attachment/file-20260103153307238.png)
 成果分类
 分类一：能力边界
 	ani 弱ai
