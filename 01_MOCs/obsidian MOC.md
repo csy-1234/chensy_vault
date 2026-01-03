@@ -1,6 +1,6 @@
 obsidian是一个基于本地 Markdown 文件的知识管理工具。
 他的核心思维是
-	双向链接(出链、入链)与 MOC (Map of Content，链接原子笔记的笔记)
+	双向链接(出链、入链)与 MOC (Map of Content，内容地图，链接原子笔记的笔记)
 自动化与效率
 	模板 (Templates)
 	Canvas (画布)
