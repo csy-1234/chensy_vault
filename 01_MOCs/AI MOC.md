@@ -1,7 +1,10 @@
 定义
 
 > [!NOTE]
-> 人工智能 (Artificial Intelligence) 是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学
+> 人工智能 (Artificial Intelligence) 是研究、开发，用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学/领域；目的是让机器让人一样智能
+> AI模型是是AI的具体实现。
+
+![[Pasted image 20260103145237.png]]
 
 成果分类
 分类一：能力边界
@@ -17,10 +20,8 @@
 	开发者工具&CLI：gemini cli    Copilot    Cuosro普通模式
 	智能体（Agents）：Cursor Agent模式
 	工作流（Workflows）： Dify
-Foundation Models [[基础模型]]
-CLI&&Agents  [[AI开发者工具&智能体]]
 
-
+[[模型诞生]]
 
 ![[Pasted image 20260103124138.png]]
 ![[Pasted image 20260103123746.png]]
