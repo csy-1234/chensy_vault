@@ -11,14 +11,12 @@
             "id": "bb4906d9ec782a4a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "01_MOCs/AI MOC.md",
-                "mode": "source",
-                "source": false
+                "file": "附件/Pasted image 20260103123746.png"
               },
-              "icon": "lucide-file",
-              "title": "AI MOC"
+              "icon": "lucide-image",
+              "title": "Pasted image 20260103123746"
             }
           }
         ]
@@ -174,6 +172,10 @@
   },
   "active": "bb4906d9ec782a4a",
   "lastOpenFiles": [
+    "附件/Pasted image 20260103124138.png",
+    "附件/Pasted image 20260103145237.png",
+    "01_MOCs/AI MOC.md",
+    "04_Attachment/file-20260103153943541.png",
     "04_Attachment/file-20260103153307238.png",
     "01_MOCs/obsidian MOC.md",
     "04_Attachment/file-20260103153150055.png",
@@ -183,13 +185,10 @@
     "01_MOCs/assets/obsidian MOC/file-20260103152614316.png",
     "01_MOCs/assets/obsidian MOC",
     "01_MOCs/assets",
-    "01_MOCs/AI MOC.md",
     "02_Atoms/模型诞生.md",
     "02_Atoms/AI开发者工具&智能体.md",
     "02_Atoms/基础模型.md",
-    "附件/Pasted image 20260103145237.png",
     "02_Atoms/未命名.base",
-    "附件/Pasted image 20260103124138.png",
     "附件/Pasted image 20260103123746.png",
     "01_MOCs/ccssyy.md",
     "01_MOCs/测试github同步.md",
@@ -215,8 +214,6 @@
     "云计算/老旧知识.md",
     "云计算/软件学习.md",
     "Pasted image 20260101205405.png",
-    "04_Attachment/Pasted image 20260101205405.png",
-    "04_Attachment/Pasted image 20260101205056.png",
     "04_Attachment/kafka集群部署.docx",
     "04_Attachment/2-KVM+NFS实现动态迁移.docx",
     "卢曼卡片盒笔记法.md",
