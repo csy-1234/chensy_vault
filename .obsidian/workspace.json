@@ -4,19 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4c5f6e61bb1d8cbd",
+        "id": "6accf617a81120f9",
         "type": "tabs",
         "children": [
           {
-            "id": "bb4906d9ec782a4a",
+            "id": "2a679ad0e655dad8",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "附件/Pasted image 20260103123746.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20260103123746"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
         ]
@@ -170,28 +168,28 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "bb4906d9ec782a4a",
+  "active": "2a679ad0e655dad8",
   "lastOpenFiles": [
-    "附件/Pasted image 20260103124138.png",
-    "附件/Pasted image 20260103145237.png",
     "01_MOCs/AI MOC.md",
+    "01_MOCs/obsidian MOC.md",
+    "01_MOCs/ccssyy.md",
+    "01_MOCs/测试github同步.md",
+    "01_MOCs/assets/obsidian MOC/file-20260103152743432.png",
+    "01_MOCs/assets/obsidian MOC/file-20260103152614316.png",
+    "附件/00Pasted image 20260103145237.png",
+    "附件/Pasted image 20260103123746.png",
+    "附件/Pasted image 20260103124138.png",
     "04_Attachment/file-20260103153943541.png",
     "04_Attachment/file-20260103153307238.png",
-    "01_MOCs/obsidian MOC.md",
     "04_Attachment/file-20260103153150055.png",
     "04_Attachment/file-20260103153056294.png",
     "04_Attachment/软件工程.md",
-    "01_MOCs/assets/obsidian MOC/file-20260103152743432.png",
-    "01_MOCs/assets/obsidian MOC/file-20260103152614316.png",
     "01_MOCs/assets/obsidian MOC",
     "01_MOCs/assets",
     "02_Atoms/模型诞生.md",
     "02_Atoms/AI开发者工具&智能体.md",
     "02_Atoms/基础模型.md",
     "02_Atoms/未命名.base",
-    "附件/Pasted image 20260103123746.png",
-    "01_MOCs/ccssyy.md",
-    "01_MOCs/测试github同步.md",
     "01_MOCs/github-create-test.md",
     "01_MOCs/ccssyy",
     "01_MOCs/github-create-test",

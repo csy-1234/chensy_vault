@@ -4,10 +4,10 @@
 > 人工智能 (Artificial Intelligence) 是研究、开发，用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学/领域；目的是让机器让人一样智能
 > AI模型是是AI的具体实现。
 
-![[Pasted image 20260103145237.png]]
-![](04_Attachment/file-20260103153307238.png)
 
-![](04_Attachment/file-20260103153943541.png)
+![400](04_Attachment/file-20260103153307238.png)
+
+'![400](04_Attachment/file-20260103153943541.png)'
 成果分类
 分类一：能力边界
 	ani 弱ai
@@ -27,5 +27,4 @@
 
 各种应用对比：
 
-![[Pasted image 20260103124138.png]]
-![[Pasted image 20260103123746.png]]
+
