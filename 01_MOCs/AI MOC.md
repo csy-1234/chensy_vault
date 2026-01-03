@@ -4,8 +4,7 @@
 
 概念
 	Foundation Models [[基础模型]]
-	AI 开发者工具 & CLI
-	Agents & Workflows  智能体与工作流 
+	 CLI&&Agents  [[AI开发者工具&智能体]]
 
 
 

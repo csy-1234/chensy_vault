@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02_Atoms/基础模型.md",
+                "file": "02_Atoms/AI开发者工具&智能体.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "基础模型"
+              "title": "AI开发者工具&智能体"
             }
           }
         ]
@@ -176,6 +176,8 @@
   "active": "624b40aa3845f7be",
   "lastOpenFiles": [
     "01_MOCs/AI MOC.md",
+    "02_Atoms/AI开发者工具&智能体.md",
+    "02_Atoms/未命名.base",
     "02_Atoms/基础模型.md",
     "附件/Pasted image 20260103124138.png",
     "附件/Pasted image 20260103123746.png",
@@ -185,7 +187,6 @@
     "01_MOCs/github-create-test.md",
     "01_MOCs/ccssyy",
     "01_MOCs/github-create-test",
-    "02_Atoms/未命名.base",
     "云计算/0818主从复制.md",
     "模板/日记模板.md",
     "新建 文本文档.txt",
@@ -220,7 +221,6 @@
     "01_MOCs",
     "Notes/Atoms",
     "Notes/未命名.md",
-    "核心思维.md",
-    "未命名.md"
+    "核心思维.md"
   ]
 }
