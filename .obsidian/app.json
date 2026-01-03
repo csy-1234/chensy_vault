@@ -10,5 +10,6 @@
   "attachmentFolderPath": "附件",
   "newFileFolderPath": "02_Atoms",
   "alwaysUpdateLinks": true,
-  "newLinkFormat": "absolute"
+  "newLinkFormat": "absolute",
+  "useMarkdownLinks": true
 }
