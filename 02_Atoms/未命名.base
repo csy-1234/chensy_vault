@@ -1,0 +1,6 @@
+filters:
+  and:
+    - file.hasProperty("实验")
+views:
+  - type: table
+    name: 表格
