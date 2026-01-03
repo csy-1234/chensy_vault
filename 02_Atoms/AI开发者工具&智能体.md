@@ -1,6 +1,14 @@
 这两个是ai基础模型的实现
 
+### 概念范畴
 
+基础工具：gemini cli 被动响应
+
+IDE插件/Plugin： Copilot, Code Assist  补全代码句子
+
+智能体/Agent: Cursor(Agent Mode) 主动执行  即是ide又是agent
+
+前两者是辅助工具，
 ### CLI和Agents区别
 
 开发者工具/cli/IDE：
