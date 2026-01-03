@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_MOCs/AI MOC.md",
+                "file": "02_Atoms/基础模型.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AI MOC"
+              "title": "基础模型"
             }
           }
         ]
@@ -175,10 +175,11 @@
   },
   "active": "624b40aa3845f7be",
   "lastOpenFiles": [
+    "01_MOCs/AI MOC.md",
+    "02_Atoms/基础模型.md",
     "附件/Pasted image 20260103124138.png",
     "附件/Pasted image 20260103123746.png",
     "01_MOCs/obsidian MOC.md",
-    "01_MOCs/AI MOC.md",
     "01_MOCs/ccssyy.md",
     "01_MOCs/测试github同步.md",
     "01_MOCs/github-create-test.md",
@@ -212,7 +213,6 @@
     "04_Attachment/Pasted image 20260101204014.png",
     "04_Attachment/Pasted image 20260101203802.png",
     "04_Attachment/Pasted image 20251221130911.png",
-    "04_Attachment/Pasted image 20251221125435.png",
     "04_Attachment/kafka集群部署.docx",
     "04_Attachment/2-KVM+NFS实现动态迁移.docx",
     "卢曼卡片盒笔记法.md",
