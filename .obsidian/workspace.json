@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 289.5063819885254,
-    "collapsed": true
+    "width": 289.5063819885254
   },
   "right": {
     "id": "15350b7938e6c683",
@@ -175,6 +174,9 @@
   },
   "active": "bb4906d9ec782a4a",
   "lastOpenFiles": [
+    "01_MOCs/assets/obsidian MOC/file-20260103152614316.png",
+    "01_MOCs/assets/obsidian MOC",
+    "01_MOCs/assets",
     "01_MOCs/AI MOC.md",
     "02_Atoms/模型诞生.md",
     "02_Atoms/AI开发者工具&智能体.md",
@@ -218,9 +220,6 @@
     "04_Attachment/kafka集群部署.docx",
     "04_Attachment/2-KVM+NFS实现动态迁移.docx",
     "卢曼卡片盒笔记法.md",
-    "05_Archive",
-    "01_MOCs",
-    "Notes/Atoms",
-    "Notes/未命名.md"
+    "05_Archive"
   ]
 }
