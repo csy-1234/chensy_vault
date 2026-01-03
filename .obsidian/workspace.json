@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "aa21fc5d1546bacb",
+    "type": "split",
+    "children": [
+      {
+        "id": "6e999c57eb1c389f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "624b40aa3845f7be",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01_MOCs/AI MOC.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AI MOC"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a4a979952ebe6be8",
+    "type": "split",
+    "children": [
+      {
+        "id": "59788fc164485632",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20267931b5fd56f4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabeticalReverse",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "b0169f8859b72fb9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "7a9358bba22327a4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 289.5063819885254,
+    "collapsed": true
+  },
+  "right": {
+    "id": "15350b7938e6c683",
+    "type": "split",
+    "children": [
+      {
+        "id": "5f31d2adc8f95a25",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c0fdaee2388e2c85",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01_MOCs/obsidian MOC.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "obsidian MOC 的反向链接列表"
+            }
+          },
+          {
+            "id": "b6dee34a497a8a7c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "01_MOCs/obsidian MOC.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "obsidian MOC 的出链列表"
+            }
+          },
+          {
+            "id": "017252539be30368",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "520543097ed24571",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01_MOCs/obsidian MOC.md",
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "obsidian MOC 的大纲"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "017252539be30368",
+  "lastOpenFiles": [
+    "附件/Pasted image 20260103124138.png",
+    "附件/Pasted image 20260103123746.png",
+    "01_MOCs/obsidian MOC.md",
+    "01_MOCs/AI MOC.md",
+    "01_MOCs/ccssyy.md",
+    "01_MOCs/测试github同步.md",
+    "01_MOCs/github-create-test.md",
+    "01_MOCs/ccssyy",
+    "01_MOCs/github-create-test",
+    "02_Atoms/未命名.base",
+    "云计算/0818主从复制.md",
+    "模板/日记模板.md",
+    "新建 文本文档.txt",
+    "03_Daily/2026-01-02.md",
+    "未命名.canvas",
+    "运维实习/新的命令.md",
+    "Excalidraw/Drawing 2026-01-02 17.17.38.excalidraw.md",
+    "Excalidraw",
+    "03_Daily/20260102.md",
+    "云计算/0819sql语句+数据库备份.md",
+    "my_to_do_list/复习进度.md",
+    "云计算/0825awk命令.md",
+    "云计算/1014k8s+回顾.md",
+    "云计算/0927阿里云.md",
+    "云计算/1023daemonset+ingress.md",
+    "云计算/1026dashboard.md",
+    "云计算/老旧知识.md",
+    "云计算/软件学习.md",
+    "Pasted image 20260101205405.png",
+    "04_Attachment/软件工程.md",
+    "04_Attachment/Pasted image 20260101205405.png",
+    "04_Attachment/Pasted image 20260101205056.png",
+    "04_Attachment/Pasted image 20260101204342.png",
+    "04_Attachment/Pasted image 20260101204251.png",
+    "04_Attachment/Pasted image 20260101204014.png",
+    "04_Attachment/Pasted image 20260101203802.png",
+    "04_Attachment/Pasted image 20251221130911.png",
+    "04_Attachment/Pasted image 20251221125435.png",
+    "04_Attachment/kafka集群部署.docx",
+    "04_Attachment/2-KVM+NFS实现动态迁移.docx",
+    "卢曼卡片盒笔记法.md",
+    "05_Archive",
+    "01_MOCs",
+    "Notes/Atoms",
+    "Notes/未命名.md",
+    "核心思维.md",
+    "未命名.md"
+  ]
+}
