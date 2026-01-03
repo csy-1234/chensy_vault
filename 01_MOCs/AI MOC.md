@@ -5,9 +5,9 @@
 > AI模型是是AI的具体实现。
 
 
-![400](04_Attachment/file-20260103153307238.png)
+![400](../04_Attachment/file-20260103153307238.png)
 
-'![400](04_Attachment/file-20260103153943541.png)'
+'![400](../04_Attachment/file-20260103153943541.png)'
 成果分类
 分类一：能力边界
 	ani 弱ai
