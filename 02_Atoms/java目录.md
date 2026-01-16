@@ -68,6 +68,11 @@ project-name/
 		           ├── config/              # 配置类
 		           ├── exception/           # 异常处理
 		           └── util/                # 工具类
-		          
+
+	   ├── resources/ 
+	       ├── application.yml  
+	       ├── mapper/                      # MyBatis XML   
+	       ├── static/                      # 静态资源
+	       └── templates/                   # Thymeleaf    
     
 ```
