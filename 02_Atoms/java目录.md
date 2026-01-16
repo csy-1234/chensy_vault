@@ -41,6 +41,13 @@ project-name/
 		   ├── application.yml
 		   ├── mapper/      # MyBatis XML
 		   └── static/
-	       
 
+```
+三、Spring Boot 项目标准结构
+```
+├── src/
+    ├── main/
+    └── test/
+    
+    
 ```
