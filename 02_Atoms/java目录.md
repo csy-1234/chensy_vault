@@ -48,6 +48,16 @@ project-name/
 ├── src/
     ├── main/
     └── test/
-    
+  
+    ├── main/
+	   ├── java/             # Java 源码
+	   ├── resources/ 
+	   
+
+	   ├── java/  
+		   └── com/
+		       └── xxx/
+		          └── App.java  
+		          
     
 ```
