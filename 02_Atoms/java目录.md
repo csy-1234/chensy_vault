@@ -44,6 +44,7 @@ project-name/
 
 ```
 三、Spring Boot 项目标准结构
+传统分层（小项目）
 ```
 ├── src/
     ├── main/
@@ -76,7 +77,48 @@ project-name/
 	       └── templates/                   # Thymeleaf    
     
 ```
-四、按「业务模块」划分
+四、业务模块划分的包结构(单体Springboot)
+一个 JVM、一个端口、一个启动类
+```
+com.xxx.project
+├── common/
+├── user/
+├── order/
+├── product/
+└── Application.java
+
+├── common/
+    ├── config
+    ├── util
+    └── constant
+    
+├── user/ 与order/ 与 product/
+    ├── controller
+    ├── service
+    ├── mapper
+    └── entity 
+```
+五、Spring Cloud
+```
+project-parent/
+├── pom.xml
+├── user-service/
+├── order-service/
+├── product-service/
+└── common/
+
+├── user-service/      #一个微服务
+├── src/main/java/com/xxx/user
+│   ├── UserApplication.java   # 启动类
+│   ├── controller
+│   ├── service
+│   └── mapper
+└── pom.xml
+
+├── order-service/      #另一个微服务
+
+
+##因此可以看出来Spring Cloud = 多个 Spring Boot 应用 + 一套分布式治理组件
 ```
 
-```
+
