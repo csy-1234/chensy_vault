@@ -24,9 +24,10 @@ project-name/
     └── test/
 
     ├── main/
-	   ├── java/   
-	   ├── resources/  
-       └── webapp/
-         
+	   ├── java/             # Java 源码
+	   ├── resources/        # 资源文件
+       └── webapp/           # 传统 Web 项目（可选）
+       
+    └── test/        
 
 ```
