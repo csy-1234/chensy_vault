@@ -57,7 +57,17 @@ project-name/
 	   ├── java/  
 		   └── com/
 		       └── xxx/
-		          └── App.java  
+		           ├── Application.java   # 启动类
+		           ├── controller/        # 控制层
+		           ├── service/            # 业务层
+		           │   └── impl/
+		           ├── mapper/             # DAO / Mapper
+		           ├── entity/             # 实体类
+		           ├── dto/                # 数据传输对象
+		           ├── vo/                 # 返回视图对象
+		           ├── config/              # 配置类
+		           ├── exception/           # 异常处理
+		           └── util/                # 工具类
 		          
     
 ```
