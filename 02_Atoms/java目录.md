@@ -32,5 +32,8 @@ project-name/
        ├── java/            # 测试代码   
        └── resources/
        
+	  ├── java/  
+		   └── com/
+       
 
 ```
