@@ -5,4 +5,10 @@ project-name/
 ├── lib/  
 ├── bin/                # 编译后的 .class 文件
 └── README.md
+
+
+├── src/
+    ├── com/
+	  └── example/
+	     └── Main.java
 ```
