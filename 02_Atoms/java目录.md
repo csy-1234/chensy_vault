@@ -24,6 +24,9 @@ project-name/
     └── test/
 
     ├── main/
-   ├── java/      
+	   ├── java/   
+	   ├── resources/  
+       └── webapp/
+         
 
 ```
