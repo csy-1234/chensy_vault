@@ -34,6 +34,13 @@ project-name/
        
 	  ├── java/  
 		   └── com/
-       
+		       └── example/
+		          └── App.java
+
+      ├── resources/   
+		   ├── application.yml
+		   ├── mapper/      # MyBatis XML
+		   └── static/
+	       
 
 ```
