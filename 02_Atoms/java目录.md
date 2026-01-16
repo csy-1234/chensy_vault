@@ -19,7 +19,11 @@ project-name/
 ├── src/
 └── target/ 
 
+├── src/
+    ├── main/
+    └── test/
 
-
+    ├── main/
+   ├── java/      
 
 ```
