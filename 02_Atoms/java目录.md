@@ -99,6 +99,9 @@ com.xxx.project
     ├── mapper
     └── entity 
 ```
+>**有几个 `Application.java`，就有几个服务**  
+**一个启动类 = 单体，不是 Spring Cloud**
+
 五、Spring Cloud
 ```
 project-parent/
@@ -121,5 +124,10 @@ project-parent/
 
 ##因此可以看出来Spring Cloud = 多个 Spring Boot 应用 + 一套分布式治理组件
 ```
+>Spring Cloud = 多个 Spring Boot 应用 + 一套分布式治理组件
+👉**不是“随便多个 Spring Boot”**  
+👉 而是 **“互相协作的多个 Spring Boot”**
 
-
+企业**成熟的演进路线**：
+	单体 Spring Boot + 业务模块分包
+	从包 → 拆成服务
