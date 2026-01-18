@@ -109,11 +109,11 @@ project-parent/
 └── common/
 
 ├── user-service/      #一个微服务
-├── src/main/java/com/xxx/user
-│   ├── UserApplication.java   # 启动类
-│   ├── controller
-│   ├── service
-│   └── mapper
+	├── src/main/java/com/xxx/user
+	   ├── UserApplication.java   # 启动类
+	   ├── controller
+	   ├── service
+	   └── mapper
 └── pom.xml
 
 ├── order-service/      #另一个微服务
