@@ -45,6 +45,7 @@ project-name/
 ```
 三、Spring Boot 项目标准结构
 传统分层（小项目）
+单体Spring Boot
 ```
 ├── src/
     ├── main/
