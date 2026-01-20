@@ -36,4 +36,13 @@
 |**204 No Content**|❌ 不允许|明确表示“没有内容”|
 |**304 Not Modified**|❌ 不允许|缓存协商|
 
+ ✅ HEAD请求层面
+ 
+ HEAD 请求
+`HEAD /file.zip`
+
+响应：
+`HTTP/1.1 200 OK Content-Length: 104857600 Content-Type: application/zip`
+❌ **这里绝对不能有 body**
+
 
