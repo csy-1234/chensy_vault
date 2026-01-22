@@ -1,5 +1,4 @@
 {
   "folder": "03_Daily",
-  "template": "模板/日记模板",
-  "autorun": true
+  "template": "模板/日记模板"
 }

@@ -11,5 +11,6 @@
   "newFileFolderPath": "02_Atoms",
   "alwaysUpdateLinks": true,
   "newLinkFormat": "absolute",
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "openBehavior": "daily"
 }
