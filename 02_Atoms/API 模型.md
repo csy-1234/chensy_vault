@@ -15,7 +15,9 @@
 ```java
  //注解来自jakarta.persistence.Entity/Table,负责映射
 @Entity       //JPA：这是实体
-@Table(name = "user")     //JPA：表名  
+@Table(name = "user")     //JPA：表名
+//其他@Id @Column
+//maven坐标 spring-boot-starter-data-jpa，传递引入 jakarta.persistence:jakarta.persistence-api（注解所在），org.hibernate.orm:hibernate-core（实现）
 public class UserEntity {
     private Long id;
     private String username;
@@ -81,6 +83,7 @@ controller入参（前端返回）：dto
 service处理：entity或bo
 
 DB映射到entity
+
 
 
 
