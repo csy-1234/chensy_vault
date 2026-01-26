@@ -26,4 +26,22 @@ Swagger 的主要功能
 - **无需 Postman 或 curl**，就能快速验证接口！
 
 
+新旧方案
+
+ **Swagger 2.0（旧规范）**
+	 SpringFox
+
+	坐标
+		`io.springfox:springfox-swagger2`  核心 API 文档生成 
+		`io.springfox:springfox-swagger-ui`   Swagger UI 界面
+	停止维护，不兼容springboot3
+
+**OpenAPI 3.0（新规范）**
+	OoenAPI
+
+	坐标
+		org.springdoc:springdoc-openapi-ui
+	官方推荐，持续更新
+
+
 
