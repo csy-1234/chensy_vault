@@ -77,12 +77,11 @@ public UserVO getUser(@PathVariable Long id) {
 
 
 
-controller入参（前端返回）：dto
-		返回值（返回给前端）：vo
+controller入参（前端返回）：**dto**
+		返回值（返回给前端）：**vo**
+service处理：**entity**或**bo**
+DB映射到**entity**
 
-service处理：entity或bo
-
-DB映射到entity
 
 
 
