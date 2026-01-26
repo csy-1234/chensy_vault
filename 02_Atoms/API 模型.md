@@ -13,7 +13,7 @@
 
 	一张表 ≈ 一个 Entity
 ```java
-@Entity
+@Entity   //注解来自jakarta.persistence.Entity/Table
 @Table(name = "user")
 public class UserEntity {
     private Long id;
@@ -74,6 +74,12 @@ public UserVO getUser(@PathVariable Long id) {
 
 
 
+controller入参（前端返回）：dto
+		返回值（返回给前端）：vo
+
+service处理：entity或bo
+
+DB映射到entity
 
 
 
