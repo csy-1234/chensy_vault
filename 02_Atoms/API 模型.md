@@ -55,7 +55,23 @@ public void createUser(@RequestBody UserCreateDTO dto) {
 
 4.VO（View Object）——返回给前端的
 
-	
+	返回给前端的
+
+```java
+@GetMapping("/user/{id}")
+public UserVO getUser(@PathVariable Long id) {
+    return userService.getUserVO(id);
+}
+```
+
+5.BO（Business Object）——业务处理中用
+
+	多表 + 规则组合
+	BO 一般不会直接出现在 Controller
+```
+
+```
+
 
 
 
