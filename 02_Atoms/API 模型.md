@@ -13,8 +13,9 @@
 
 	一张表 ≈ 一个 Entity
 ```java
-@Entity   //注解来自jakarta.persistence.Entity/Table
-@Table(name = "user")
+ //注解来自jakarta.persistence.Entity/Table,负责映射
+@Entity       //JPA：这是实体
+@Table(name = "user")     //JPA：表名  
 public class UserEntity {
     private Long id;
     private String username;
